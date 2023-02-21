@@ -1,7 +1,6 @@
 package fr.cecile75.invoicerdemop3.controller;
 
 import fr.cecile75.invoicerdemop3.entity.Invoice;
-import fr.cecile75.invoicerdemop3.service.InvoiceService;
 import fr.cecile75.invoicerdemop3.service.InvoiceServiceInterface;
 
 import java.util.Scanner;

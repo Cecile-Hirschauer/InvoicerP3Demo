@@ -10,6 +10,8 @@ public class InvoiceRepositoryGarage implements InvoiceRepositoryInterface{
 
     public void create(Invoice invoice) {
         invoices.add(invoice);
+        // System.out.println("je suis dans repository garage");
+
         System.out.println(invoice.getInvoiceNumber() + " - " + invoice.getCustomerName());
     }
 }

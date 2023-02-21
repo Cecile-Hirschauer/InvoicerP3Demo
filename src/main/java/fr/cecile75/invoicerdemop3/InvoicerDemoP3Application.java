@@ -3,6 +3,10 @@ package fr.cecile75.invoicerdemop3;
 import fr.cecile75.invoicerdemop3.controller.InvoiceController;
 import fr.cecile75.invoicerdemop3.controller.InvoiceControllerGarage;
 
+import fr.cecile75.invoicerdemop3.repository.InvoiceRepository;
+import fr.cecile75.invoicerdemop3.repository.InvoiceRepositoryGarage;
+import fr.cecile75.invoicerdemop3.service.InvoiceService;
+import fr.cecile75.invoicerdemop3.service.InvoiceServiceGarage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -18,11 +22,21 @@ public class InvoicerDemoP3Application {
         int choice = scanner.nextInt();
 
          if (choice == 1) {
-             InvoiceControllerGarage garageInvoice = new InvoiceControllerGarage();
-             garageInvoice.createInvoice();
+             InvoiceController invoiceController = new InvoiceController();
+             InvoiceService invoiceService = new InvoiceService();
+             invoiceController.setInvoiceService(invoiceService);
+             InvoiceRepository invoiceRepository = new InvoiceRepository();
+             invoiceService.setInvoiceRepository(invoiceRepository);
+             invoiceController.createInvoice();
          } else if (choice == 2) {
-             InvoiceController otherInvoice = new InvoiceController();
-             otherInvoice.createInvoice();
+             // System.out.println("je suis dans 2");
+             InvoiceControllerGarage invoiceController = new InvoiceControllerGarage();
+             InvoiceServiceGarage invoiceService = new InvoiceServiceGarage();
+             invoiceController.setInvoiceService(invoiceService);
+
+             InvoiceRepositoryGarage invoiceRepository = new InvoiceRepositoryGarage();
+             invoiceService.setInvoiceRepository(invoiceRepository);
+             invoiceController.createInvoice();
          }
         else {
             System.out.println("Error !");
