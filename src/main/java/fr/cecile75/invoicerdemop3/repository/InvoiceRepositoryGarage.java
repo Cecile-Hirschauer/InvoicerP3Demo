@@ -5,11 +5,11 @@ import fr.cecile75.invoicerdemop3.entity.Invoice;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InvoiceRepository implements  InvoiceRepositoryInterface {
+public class InvoiceRepositoryGarage implements InvoiceRepositoryInterface{
     private static List invoices = new ArrayList<>();
 
     public void create(Invoice invoice) {
         invoices.add(invoice);
-        System.out.println("Invoice No: " + invoice.getInvoiceNumber() + " for: " + invoice.getCustomerName());
+        System.out.println(invoice.getInvoiceNumber() + " - " + invoice.getCustomerName());
     }
 }
