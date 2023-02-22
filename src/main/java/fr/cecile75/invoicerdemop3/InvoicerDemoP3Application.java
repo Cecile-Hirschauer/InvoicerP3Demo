@@ -1,14 +1,9 @@
 package fr.cecile75.invoicerdemop3;
 
-import fr.cecile75.invoicerdemop3.controller.InvoiceController;
-import fr.cecile75.invoicerdemop3.controller.InvoiceControllerGarage;
+import fr.cecile75.invoicerdemop3.controller.InvoiceControllerInterface;
 
-import fr.cecile75.invoicerdemop3.repository.InvoiceRepository;
-import fr.cecile75.invoicerdemop3.repository.InvoiceRepositoryGarage;
-import fr.cecile75.invoicerdemop3.service.InvoiceService;
-import fr.cecile75.invoicerdemop3.service.InvoiceServiceGarage;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import fr.cecile75.invoicerdemop3.repository.InvoiceRepositoryInterface;
+import fr.cecile75.invoicerdemop3.service.InvoiceServiceInterface;
 
 import java.util.Scanner;
 
@@ -17,31 +12,31 @@ public class InvoicerDemoP3Application {
     public static void main(String[] args) {
 
         //SpringApplication.run(InvoicerDemoP3Application.class, arg);
-        System.out.println("Choose 1 if you are Garage, 2 for other");
+        System.out.println("Choose 1 or 2 or 3 or 4");
         Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
 
-         if (choice == 1) {
-             InvoiceController invoiceController = new InvoiceController();
-             InvoiceService invoiceService = new InvoiceService();
-             invoiceController.setInvoiceService(invoiceService);
-             InvoiceRepository invoiceRepository = new InvoiceRepository();
-             invoiceService.setInvoiceRepository(invoiceRepository);
-             invoiceController.createInvoice();
-         } else if (choice == 2) {
-             // System.out.println("je suis dans 2");
-             InvoiceControllerGarage invoiceController = new InvoiceControllerGarage();
-             InvoiceServiceGarage invoiceService = new InvoiceServiceGarage();
-             invoiceController.setInvoiceService(invoiceService);
+        System.out.println("Quelle est la classe de mon controller");
+        String controllerClass = scanner.next();
+        System.out.println("Quelle est la classe de mon service");
+        String serviceClass = scanner.next();
+        System.out.println("Quelle est la classe de mon repository");
+        String repositoryClass = scanner.next();
 
-             InvoiceRepositoryGarage invoiceRepository = new InvoiceRepositoryGarage();
-             invoiceService.setInvoiceRepository(invoiceRepository);
-             invoiceController.createInvoice();
-         }
-        else {
-            System.out.println("Error !");
-         }
+
+        InvoiceControllerInterface invoiceController = null;
+        InvoiceServiceInterface invoiceService = null;
+        InvoiceRepositoryInterface invoiceRepository = null;
+
+        try {
+            invoiceController = (InvoiceControllerInterface) Class.forName(controllerClass).getDeclaredConstructor().newInstance();
+            invoiceService = (InvoiceServiceInterface) Class.forName(serviceClass).getDeclaredConstructor().newInstance();
+            invoiceRepository = (InvoiceRepositoryInterface) Class.forName(repositoryClass).getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        invoiceController.setInvoiceService(invoiceService);
+        invoiceService.setInvoiceRepository(invoiceRepository);
+        invoiceController.createInvoice();
 
     }
-
 }
