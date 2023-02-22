@@ -4,8 +4,25 @@ import fr.cecile75.invoicerdemop3.entity.Invoice;
 import fr.cecile75.invoicerdemop3.repository.InvoiceRepositoryInterface;
 
 public class InvoiceServicePrefix implements InvoiceServiceInterface {
-    private static long lastNumber = 100L;
+    private long lastNumber;
+    private String prefix;
     private InvoiceRepositoryInterface invoiceRepository;
+
+    public long getLastNumber() {
+        return lastNumber;
+    }
+
+    public void setLastNumber(long lastNumber) {
+        this.lastNumber = lastNumber;
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
 
     public InvoiceRepositoryInterface getInvoiceRepository() {
         return invoiceRepository;
@@ -16,7 +33,7 @@ public class InvoiceServicePrefix implements InvoiceServiceInterface {
     }
 
     public void createInvoice(Invoice invoice) {
-        invoice.setInvoiceNumber("INV_" + String.valueOf(++lastNumber));
+        invoice.setInvoiceNumber(prefix + String.valueOf(++lastNumber));
         invoiceRepository.create(invoice);
         // System.out.println("je suis dans service garage");
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byName">
+    <bean id="invoiceService" class="fr.cecile75.invoicerdemop3.service.InvoiceServicePrefix" >
+        <property name="lastNumber" value="100" />
+        <property name="prefix" value="INV_" />
+    </bean>
+    <bean class="fr.cecile75.invoicerdemop3.controller.InvoiceControllerWeb"  />
+    <bean id="invoiceRepository" class="fr.cecile75.invoicerdemop3.repository.InvoiceRepositoryMemory" />
+</beans>
