@@ -1,9 +1,12 @@
-package fr.cecile75.invoicerdemop3.service;
+package fr.cecile75.invoicerdemop3.service.number;
 
 import fr.cecile75.invoicerdemop3.entity.Invoice;
 import fr.cecile75.invoicerdemop3.repository.InvoiceRepositoryInterface;
+import fr.cecile75.invoicerdemop3.service.InvoiceServiceInterface;
+import org.springframework.stereotype.Service;
 
-public class InvoiceServiceNumber implements InvoiceServiceInterface{
+@Service
+public class InvoiceServiceNumber implements InvoiceServiceInterface {
     private static long lastNumber = 0L;
     private InvoiceRepositoryInterface invoiceRepository;
 

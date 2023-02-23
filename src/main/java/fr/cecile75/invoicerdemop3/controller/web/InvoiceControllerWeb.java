@@ -1,10 +1,12 @@
-package fr.cecile75.invoicerdemop3.controller;
+package fr.cecile75.invoicerdemop3.controller.web;
 
+import fr.cecile75.invoicerdemop3.controller.InvoiceControllerInterface;
 import fr.cecile75.invoicerdemop3.entity.Invoice;
 import fr.cecile75.invoicerdemop3.service.InvoiceServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
-
+@Controller
 public class InvoiceControllerWeb implements InvoiceControllerInterface {
     @Autowired
 

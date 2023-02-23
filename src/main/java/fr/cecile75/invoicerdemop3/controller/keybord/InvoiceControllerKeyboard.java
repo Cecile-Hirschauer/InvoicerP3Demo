@@ -1,27 +1,30 @@
-package fr.cecile75.invoicerdemop3.controller;
+package fr.cecile75.invoicerdemop3.controller.keybord;
 
+import fr.cecile75.invoicerdemop3.controller.InvoiceControllerInterface;
 import fr.cecile75.invoicerdemop3.entity.Invoice;
 import fr.cecile75.invoicerdemop3.service.InvoiceServiceInterface;
+import org.springframework.stereotype.Controller;
 
-public class InvoiceControllerScanner implements InvoiceControllerInterface {
-    InvoiceServiceInterface invoiceService;
+import java.util.Scanner;
+@Controller
+public class InvoiceControllerKeyboard implements InvoiceControllerInterface {
+    private InvoiceServiceInterface invoiceService;
+
 
     public InvoiceServiceInterface getInvoiceService() {
         return invoiceService;
     }
 
-    @Override
     public void setInvoiceService(InvoiceServiceInterface invoiceService) {
         this.invoiceService = invoiceService;
     }
 
-    @Override
     public void createInvoice() {
-        String customerName = "Shop1";
+        System.out.println("Customer name");
+        Scanner sc = new Scanner(System.in);
+        String customerName = sc.nextLine();
         Invoice invoice = new Invoice();
         invoice.setCustomerName(customerName);
-        System.out.println("With Scanner");
         invoiceService.createInvoice(invoice);
-
     }
 }
